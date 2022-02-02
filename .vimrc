@@ -25,6 +25,7 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'do': 'bash install.sh',
     \ }
 
+Plug 'tpope/vim-fugitive'
 call plug#end()
 
 " 80 characters line
