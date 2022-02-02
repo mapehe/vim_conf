@@ -22,9 +22,9 @@ Plug 'dracula/vim', { 'as': 'dracula' }
 call plug#end()
 
 " 80 characters line
-" set colorcolumn=81
-" "execute "set colorcolumn=" . join(range(81,335), ',')
-" highlight ColorColumn ctermbg=Black ctermfg=DarkRed
+set colorcolumn=81
+execute "set colorcolumn=" . join(range(81,335), ',')
+highlight ColorColumn ctermbg=Black ctermfg=DarkRed
 " Highlight trailing spaces
 " http://vim.wikia.com/wiki/Highlight_unwanted_spaces
 highlight ExtraWhitespace ctermbg=red guibg=red
