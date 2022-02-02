@@ -52,3 +52,5 @@ nmap <silent> gn <Plug>(coc-rename)
 
 colorscheme dracula
 
+:set wrap!
+
