@@ -19,6 +19,12 @@ Plug 'jparise/vim-graphql'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'dracula/vim', { 'as': 'dracula' }
+
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+
 call plug#end()
 
 " 80 characters line
@@ -35,12 +41,6 @@ let $FZF_DEFAULT_COMMAND='find . \( -name node_modules -o -name .git -o -name .n
 
 autocmd VimEnter * if !argc() | NERDTree | endif
 autocmd VimEnter * wincmd w
-
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-nmap <silent> gn <Plug>(coc-rename)
 
 colorscheme dracula
 
@@ -61,5 +61,33 @@ autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
 
-map <F6> :let $VIM_DIR=expand('%:p:h')<CR>:terminal<CR>cd $VIM_DIR<CR>
+
+let g:LanguageClient_serverCommands = {
+  \ 'cpp': ['clangd', '-j=5', '-completion-style=detailed', '-background-index', '-all-scopes-completion', '--suggest-missing-includes'],
+  \ 'c': ['clangd', '-j=5',  '-completion-style=detailed', '-background-index', '-all-scopes-completion', '--suggest-missing-includes'],
+  \ 'python': ['pyls'],
+  \ 'rust': ['rls'],
+  \ }
+let g:LanguageClient_diagnosticsList = 'Disabled'
+
+:function Language_client_keymaps()
+:  nmap <silent> gd :call LanguageClient#textDocument_definition()<cr>
+:  nmap <silent> gh :call LanguageClient#textDocument_hover()<cr>
+:  nmap <silent> gr :call LanguageClient#textDocument_references()<cr>
+:  nmap <silent> gm :call LanguageClient_contextMenu()<CR>
+:  nmap <silent> gn :call LanguageClient#textDocument_rename()<CR>
+:endfunction
+
+:function Coc_keymaps()
+:  nmap <silent> gd <Plug>(coc-definition)
+:  nmap <silent> gy <Plug>(coc-type-definition)
+:  nmap <silent> gi <Plug>(coc-implementation)
+:  nmap <silent> gr <Plug>(coc-references)
+:  nmap <silent> gn <Plug>(coc-rename)
+:endfunction
+
+map <F12> :let $VIM_DIR=expand('%:p:h')<CR>:terminal<CR>cd $VIM_DIR<CR>
+
+autocmd BufEnter *.{js,jsx,ts,tsx} :call Coc_keymaps()
+autocmd BufEnter *.{c,cpp,s,h} :call Language_client_keymaps()
 
