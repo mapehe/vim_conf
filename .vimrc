@@ -17,6 +17,8 @@ Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'jparise/vim-graphql'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+Plug 'dracula/vim', { 'as': 'dracula' }
 call plug#end()
 
 " 80 characters line
@@ -32,8 +34,6 @@ autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
 
-set t_Co=256
-set background=dark
 set number
 
 
@@ -49,4 +49,6 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> gn <Plug>(coc-rename)
+
+colorscheme dracula
 
