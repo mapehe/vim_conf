@@ -42,4 +42,5 @@ let g:coc_global_extensions = ['coc-tsserver']
 let $FZF_DEFAULT_COMMAND='find . \( -name node_modules -o -name .git -o -name .next -o -name .husky -o -name .swc \) -prune -o -print'
 
 autocmd VimEnter * if !argc() | NERDTree | endif
+autocmd VimEnter * wincmd w
 
