@@ -18,14 +18,14 @@ Plug 'jparise/vim-graphql'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-Plug 'dracula/vim', { 'as': 'dracula' }
-
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
     \ }
 
 Plug 'tpope/vim-fugitive'
+
+Plug 'tomasiser/vim-code-dark'
 call plug#end()
 
 " 80 characters line
@@ -43,7 +43,7 @@ let $FZF_DEFAULT_COMMAND='find . \( -name node_modules -o -name .git -o -name .n
 autocmd VimEnter * if !argc() | NERDTree | endif
 autocmd VimEnter * wincmd w
 
-colorscheme dracula
+colorscheme codedark
 
 :set wrap!
 
@@ -85,6 +85,8 @@ let g:LanguageClient_diagnosticsList = 'Disabled'
 :  nmap <silent> gi <Plug>(coc-implementation)
 :  nmap <silent> gr <Plug>(coc-references)
 :  nmap <silent> gn <Plug>(coc-rename)
+:  inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                                \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 :endfunction
 
 map <F12> :let $VIM_DIR=expand('%:p:h')<CR>:terminal<CR>cd $VIM_DIR<CR>
