@@ -96,3 +96,5 @@ map F :NERDTreeFind<cr>
 autocmd BufEnter *.{js,jsx,ts,tsx} :call Coc_keymaps()
 autocmd BufEnter *.{c,cpp,s,h} :call Language_client_keymaps()
 
+nmap gs :Rg<cr>
+
