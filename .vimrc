@@ -26,6 +26,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tomasiser/vim-code-dark'
 Plug 'HerringtonDarkholme/yats.vim'
 
+Plug 'bfrg/vim-cpp-modern'
 call plug#end()
 
 " 80 characters line
