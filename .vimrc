@@ -10,9 +10,6 @@ Plug 'preservim/tagbar'
 Plug 'bogado/file-line'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 
-Plug 'pangloss/vim-javascript'
-Plug 'leafgarland/typescript-vim'
-Plug 'peitalin/vim-jsx-typescript'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'jparise/vim-graphql'
 
@@ -26,6 +23,7 @@ Plug 'autozimu/LanguageClient-neovim', {
 Plug 'tpope/vim-fugitive'
 
 Plug 'tomasiser/vim-code-dark'
+Plug 'HerringtonDarkholme/yats.vim'
 call plug#end()
 
 " 80 characters line
