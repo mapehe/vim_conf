@@ -86,6 +86,9 @@ let g:LanguageClient_diagnosticsList = 'Disabled'
 :  nmap <silent> gi <Plug>(coc-implementation)
 :  nmap <silent> gr <Plug>(coc-references)
 :  nmap <silent> gn <Plug>(coc-rename)
+:  nmap <silent> dn :call CocAction('diagnosticNext')<CR>
+:  nmap <silent> dN :call CocAction('diagnosticPrevious')<CR>
+:  nmap <silent> df :call CocFix<CR>
 :  inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
                                 \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 :endfunction
