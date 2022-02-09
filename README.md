@@ -1,6 +1,6 @@
 Installation:
 
-```
+```bash
 # cd to ~
 cd
 
