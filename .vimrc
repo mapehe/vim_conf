@@ -36,7 +36,6 @@ highlight ColorColumn ctermbg=Black ctermfg=DarkRed
 
 set number
 
-
 let g:coc_global_extensions = ['coc-tsserver']
 
 let $FZF_DEFAULT_COMMAND='find . \( -name node_modules -o -name .git -o -name .next -o -name .husky -o -name .swc \) -prune -o -print'
@@ -91,6 +90,7 @@ let g:LanguageClient_diagnosticsList = 'Disabled'
 :  nmap <silent> df :CocFix<CR>
 :  inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
                                 \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+:  nmap <silent> gh :call CocAction('doHover')<CR>
 :endfunction
 
 map <F12> :let $VIM_DIR=expand('%:p:h')<CR>:terminal<CR>cd $VIM_DIR<CR>
