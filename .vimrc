@@ -101,3 +101,8 @@ autocmd BufEnter *.{c,cpp,s,h} :call Language_client_keymaps()
 
 nmap gs :Rg<cr>
 
+nmap <up> :tabnew<cr>
+nmap <down> :tabclose<cr>
+nmap <right> :tabnext<cr>
+nmap <left> :tabprevious<cr>
+
