@@ -10,7 +10,6 @@ Plug 'preservim/tagbar'
 Plug 'bogado/file-line'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'jparise/vim-graphql'
 
@@ -27,12 +26,20 @@ Plug 'tomasiser/vim-code-dark'
 Plug 'HerringtonDarkholme/yats.vim'
 
 Plug 'bfrg/vim-cpp-modern'
+
+Plug 'rhysd/vim-clang-format'
 call plug#end()
 
 " 80 characters line
 set colorcolumn=81
 execute "set colorcolumn=" . join(range(81,335), ',')
 highlight ColorColumn ctermbg=Black ctermfg=DarkRed
+
+let g:clang_format#style_options = {
+            \ "AccessModifierOffset" : -4,
+            \ "AllowShortIfStatementsOnASingleLine" : "true",
+            \ "AlwaysBreakTemplateDeclarations" : "true",
+            \ "Standard" : "C++11"}
 
 set number
 
