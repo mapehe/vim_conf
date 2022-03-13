@@ -84,8 +84,6 @@ let g:LanguageClient_diagnosticsList = 'Disabled'
 :  nmap <silent> gr :call LanguageClient#textDocument_references()<cr>
 :  nmap <silent> gm :call LanguageClient_contextMenu()<CR>
 :  nmap <silent> gn :call LanguageClient#textDocument_rename()<CR>
-:  inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-                                \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 :endfunction
 
 :function Coc_keymaps()
@@ -97,8 +95,6 @@ let g:LanguageClient_diagnosticsList = 'Disabled'
 :  nmap <silent> dn :call CocAction('diagnosticNext')<CR>
 :  nmap <silent> dN :call CocAction('diagnosticPrevious')<CR>
 :  nmap <silent> df :CocFix<CR>
-:  inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-                                \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 :  nmap <silent> gh :call CocAction('doHover')<CR>
 :endfunction
 
@@ -116,5 +112,7 @@ nmap <right> :tabnext<cr>
 nmap <left> :tabprevious<cr>
 
 autocmd FileType c,h ClangFormatAutoEnable
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                            \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 
