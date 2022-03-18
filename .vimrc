@@ -111,7 +111,7 @@ nmap <down> :tabclose<cr>
 nmap <right> :tabnext<cr>
 nmap <left> :tabprevious<cr>
 
-autocmd FileType c,h ClangFormatAutoEnable
+autocmd FileType c,h,cpp ClangFormatAutoEnable
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
                             \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
