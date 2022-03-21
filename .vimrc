@@ -84,6 +84,9 @@ let g:LanguageClient_diagnosticsList = 'Disabled'
 :  nmap <silent> gr :call LanguageClient#textDocument_references()<cr>
 :  nmap <silent> gm :call LanguageClient_contextMenu()<CR>
 :  nmap <silent> gn :call LanguageClient#textDocument_rename()<CR>
+:  nmap <silent> dn :call LanguageClient#diagnosticsNext()<CR>
+:  nmap <silent> dN :call LanguageClient#diagnosticsPrevious()<CR>
+:  nmap <silent> df :call LanguageClient#textDocument_codeAction()<CR>
 :endfunction
 
 :function Coc_keymaps()
