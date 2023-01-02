@@ -12,21 +12,15 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'jparise/vim-graphql'
-
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
     \ }
-
 Plug 'tpope/vim-fugitive'
-
 Plug 'tomasiser/vim-code-dark'
 Plug 'HerringtonDarkholme/yats.vim'
-
 Plug 'bfrg/vim-cpp-modern'
-
 Plug 'rhysd/vim-clang-format'
 call plug#end()
 
