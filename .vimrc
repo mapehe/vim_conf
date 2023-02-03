@@ -22,6 +22,7 @@ Plug 'tomasiser/vim-code-dark'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'bfrg/vim-cpp-modern'
 Plug 'rhysd/vim-clang-format'
+Plug 'hashivim/vim-terraform'
 call plug#end()
 
 " 80 characters line
