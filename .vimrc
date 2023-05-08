@@ -24,12 +24,15 @@ Plug 'bfrg/vim-cpp-modern'
 Plug 'rhysd/vim-clang-format'
 Plug 'hashivim/vim-terraform'
 Plug 'JuliaEditorSupport/julia-vim'
+Plug 'airblade/vim-gitgutter'
 call plug#end()
 
 " 80 characters line
 set colorcolumn=81
 execute "set colorcolumn=" . join(range(81,335), ',')
 highlight ColorColumn ctermbg=Black ctermfg=DarkRed
+
+
 
 let g:clang_format#style_options = {
             \ "AccessModifierOffset" : -4,
@@ -55,16 +58,6 @@ colorscheme codedark
 :set smartindent
 :set expandtab
 :set tabstop=2
-
-" Highlight trailing spaces
-" http://vim.wikia.com/wiki/Highlight_unwanted_spaces
-highlight ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /\s\+$/
-autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-autocmd BufWinLeave * call clearmatches()
-
 
 let g:LanguageClient_serverCommands = {
   \ 'cpp': ['clangd', '-j=5', '-completion-style=detailed', '-background-index', '-all-scopes-completion', '--suggest-missing-includes'],
@@ -133,4 +126,5 @@ autocmd FileType c,h,cpp ClangFormatAutoEnable
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
                             \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
-
+:highlight DiffAdd ctermfg=Green ctermbg=NONE guifg=#00ff37 guibg=#00ff37
+:highlight DiffDelete ctermfg=Red ctermbg=NONE guifg=#00ff37 guibg=#00ff37
