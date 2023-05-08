@@ -127,4 +127,6 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
                             \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 :highlight DiffAdd ctermfg=Green ctermbg=NONE guifg=#00ff37 guibg=#00ff37
-:highlight DiffDelete ctermfg=Red ctermbg=NONE guifg=#00ff37 guibg=#00ff37
+:highlight DiffDelete ctermfg=9 ctermbg=NONE guifg=#00ff37 guibg=#00ff37
+let g:gitgutter_enabled=1
+set updatetime=100
