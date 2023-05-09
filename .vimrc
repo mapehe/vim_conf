@@ -27,12 +27,6 @@ Plug 'JuliaEditorSupport/julia-vim'
 Plug 'airblade/vim-gitgutter'
 call plug#end()
 
-" 80 characters line
-set colorcolumn=81
-execute "set colorcolumn=" . join(range(81,335), ',')
-highlight ColorColumn ctermbg=Black ctermfg=DarkRed
-
-
 
 let g:clang_format#style_options = {
             \ "AccessModifierOffset" : -4,
