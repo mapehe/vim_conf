@@ -116,6 +116,9 @@ nmap <down> :tabclose<cr>
 nmap <right> :tabnext<cr>
 nmap <left> :tabprevious<cr>
 
+nmap J <Plug>(GitGutterNextHunk)
+nmap K <Plug>(GitGutterPrevHunk)
+
 autocmd FileType c,h,cpp ClangFormatAutoEnable
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
                             \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
