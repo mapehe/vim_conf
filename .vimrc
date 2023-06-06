@@ -109,6 +109,7 @@ map F :NERDTreeFind<cr>
 autocmd BufEnter *.{js,jsx,ts,tsx} :call Coc_keymaps()
 autocmd BufEnter *.{c,cpp,cc,s,h,jl} :call Language_client_keymaps()
 
+command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
 nmap gs :Rg<cr>
 
 nmap <up> :tabnew<cr>
