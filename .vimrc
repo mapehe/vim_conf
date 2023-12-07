@@ -27,7 +27,6 @@ Plug 'JuliaEditorSupport/julia-vim'
 Plug 'airblade/vim-gitgutter'
 call plug#end()
 
-
 let g:clang_format#style_options = {
             \ "AccessModifierOffset" : -4,
             \ "AllowShortIfStatementsOnASingleLine" : "true",
@@ -106,7 +105,17 @@ let g:default_julia_version = '1.0'
 map <F12> :let $VIM_DIR=expand('%:p:h')<CR>:terminal<CR>cd $VIM_DIR<CR>
 map F :NERDTreeFind<cr>
 
-autocmd BufEnter *.{js,jsx,ts,tsx} :call Coc_keymaps()
+:function JsInit()
+  :call Coc_keymaps()
+  :let @r = ".reduce((x, y) => x)"
+  :let @m = ".map((x) => x)"
+  :let @s = ".split("")"
+  :let @a = "[...Array(0).keys()]"
+  :let @f = ".filter((x) => x)"
+: endfunction
+
+
+autocmd BufEnter *.{js,jsx,ts,tsx} :call JsInit()
 autocmd BufEnter *.{c,cpp,cc,s,h,jl} :call Language_client_keymaps()
 
 command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
