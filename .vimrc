@@ -109,9 +109,11 @@ map F :NERDTreeFind<cr>
   :call Coc_keymaps()
   :let @r = ".reduce((x, y) => x)"
   :let @m = ".map((x) => x)"
-  :let @s = ".split("")"
+  :let @s = ".split(\"\")"
   :let @a = "[...Array(0).keys()]"
   :let @f = ".filter((x) => x)"
+  :let @i = "(x) => x"
+  :let @j = ".join(\"\")"
 : endfunction
 
 
