@@ -25,6 +25,7 @@ Plug 'rhysd/vim-clang-format'
 Plug 'hashivim/vim-terraform'
 Plug 'JuliaEditorSupport/julia-vim'
 Plug 'airblade/vim-gitgutter'
+Plug 'markonm/traces.vim'
 call plug#end()
 
 let g:clang_format#style_options = {
