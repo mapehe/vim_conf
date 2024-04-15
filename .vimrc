@@ -140,3 +140,8 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
 :highlight DiffDelete ctermfg=9 ctermbg=NONE guifg=#00ff37 guibg=#00ff37
 let g:gitgutter_enabled=1
 set updatetime=100
+
+highlight CocErrorFloat ctermfg=Red guifg=#ff0000
+highlight CocInfoFloat ctermfg=White guifg=#ffffff
+
+
