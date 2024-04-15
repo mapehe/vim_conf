@@ -88,9 +88,9 @@ let g:LanguageClient_diagnosticsList = 'Disabled'
 :  nmap <silent> gi <Plug>(coc-implementation)
 :  nmap <silent> gr <Plug>(coc-references)
 :  nmap <silent> gn <Plug>(coc-rename)
+:  nmap <silent> df <Plug>(coc-codeaction-cursor)
 :  nmap <silent> dn :call CocAction('diagnosticNext')<CR>
 :  nmap <silent> dN :call CocAction('diagnosticPrevious')<CR>
-:  nmap <silent> df :CocFix<CR>
 :  nmap <silent> gh :call CocAction('doHover')<CR>
 :endfunction
 
