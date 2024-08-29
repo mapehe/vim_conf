@@ -108,13 +108,6 @@ map F :NERDTreeFind<cr>
 
 :function JsInit()
   :call Coc_keymaps()
-  :let @r = ".reduce((x, y) => x)"
-  :let @m = ".map((x) => x)"
-  :let @s = ".split(\"\")"
-  :let @a = "[...Array(0).keys()]"
-  :let @f = ".filter((x) => x)"
-  :let @i = "(x) => x"
-  :let @j = ".join(\"\")"
 : endfunction
 
 
@@ -143,5 +136,4 @@ set updatetime=100
 
 highlight CocErrorFloat ctermfg=Red guifg=#ff0000
 highlight CocInfoFloat ctermfg=White guifg=#ffffff
-
 
