@@ -26,6 +26,13 @@ Plug 'hashivim/vim-terraform'
 Plug 'JuliaEditorSupport/julia-vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'markonm/traces.vim'
+Plug 'Julian/lean.nvim'
+Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/nvim-cmp'
 call plug#end()
 
 let g:clang_format#style_options = {
@@ -94,13 +101,6 @@ let g:LanguageClient_diagnosticsList = 'Disabled'
 :  nmap <silent> gh :call CocAction('doHover')<CR>
 :endfunction
 
-" NOTE: You must instal the following packages in julia via cmd
-"
-" julia> using Pkg
-" julia> Pkg.add("LanguageServer")
-" julia> Pkg.add("SymbolServer")
-" julia> Pkg.add("StaticLint")
-
 let g:default_julia_version = '1.0'
 
 map <F12> :let $VIM_DIR=expand('%:p:h')<CR>:terminal<CR>cd $VIM_DIR<CR>
@@ -109,7 +109,6 @@ map F :NERDTreeFind<cr>
 :function JsInit()
   :call Coc_keymaps()
 : endfunction
-
 
 autocmd BufEnter *.{js,jsx,ts,tsx} :call JsInit()
 autocmd BufEnter *.{c,cpp,cc,s,h,jl} :call Language_client_keymaps()
