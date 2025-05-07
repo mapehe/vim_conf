@@ -2,22 +2,6 @@ vim.opt.signcolumn = "yes:1"
 
 vim.g.maplocalleader = '  '
 
-local cmp = require'cmp'
-cmp.setup{
-    mapping = cmp.mapping.preset.insert({
-      ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-      ['<C-f>'] = cmp.mapping.scroll_docs(4),
-      ['<C-Space>'] = cmp.mapping.complete(),
-      ['<C-e>'] = cmp.mapping.abort(),
-      ['<CR>'] = cmp.mapping.confirm({ select = true }),
-    }),
-    sources = cmp.config.sources({
-      { name = 'nvim_lsp' },
-      { name = 'path' },
-      { name = 'buffer' },
-    })
-}
-
 local function on_attach(_, bufnr)
     vim.keymap.set('n','gD','<cmd>lua vim.lsp.buf.declaration()<CR>')
     vim.keymap.set('n','gd','<cmd>lua vim.lsp.buf.definition()<CR>')
