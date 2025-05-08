@@ -124,3 +124,31 @@ endfunction
 command! GotoDiffChange call GoToPreciseDiffLocation()
 
 :  nmap <silent> ga :call GoToPreciseDiffLocation()<CR>
+
+function! FoldPatch()
+  " Enable manual folding
+  setlocal foldmethod=expr
+  setlocal foldexpr=FoldPatchExpr(v:lnum)
+
+  " Optional: Start with all folds closed
+  setlocal foldlevel=0
+endfunction
+
+function! FoldPatchExpr(lnum)
+  " Get the current line
+  let line = getline(a:lnum)
+
+  " If it's a hunk header, start a fold
+  if line =~ '^@@ .* @@'
+    return '>1'
+  endif
+
+  " If it's part of a diff or context, keep it in the fold
+  if line =~ '^[-+ ]'
+    return '1'
+  endif
+
+  " Everything else is not folded
+  return '0'
+endfunction
+
