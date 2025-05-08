@@ -123,3 +123,4 @@ endfunction
 
 command! GotoDiffChange call GoToPreciseDiffLocation()
 
+:  nmap <silent> ga :call GoToPreciseDiffLocation()<CR>
