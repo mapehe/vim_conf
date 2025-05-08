@@ -23,9 +23,13 @@ Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
+Plug 'folke/trouble.nvim'
+Plug 'nvim-tree/nvim-web-devicons'
 call plug#end()
 
 set number
+
+let mapleader = " "
 
 let g:coc_global_extensions = ['coc-tsserver']
 
@@ -217,3 +221,12 @@ lua <<EOF
     capabilities = capabilities
   }
 EOF
+
+" Key mappings for Trouble
+nnoremap <leader>xx :lua require("trouble").toggle("diagnostics")<CR>
+nnoremap <leader>xX :lua require("trouble").toggle({mode = "diagnostics", filter = {buf = 0}})<CR>
+nnoremap <leader>cs :lua require("trouble").toggle("symbols")<CR>
+nnoremap <leader>cl :lua require("trouble").toggle({mode = "lsp", focus = false, win = {position = "right"}})<CR>
+nnoremap <leader>xL :lua require("trouble").toggle("loclist")<CR>
+nnoremap <leader>xQ :lua require("trouble").toggle("qflist")<CR>
+
