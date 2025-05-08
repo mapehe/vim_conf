@@ -1,5 +1,3 @@
-vim.opt.signcolumn = "yes:1"
-
 vim.g.maplocalleader = '  '
 
 local function on_attach(_, bufnr)
@@ -26,3 +24,27 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     update_in_insert = true,
   }
 )
+
+-- Mason setup
+require("mason").setup()
+
+-- Install tsserver automatically
+require("mason-lspconfig").setup {
+  ensure_installed = { "ts_ls" },
+}
+
+local lspconfig = require("lspconfig")
+
+require("lspconfig").ts_ls.setup {
+  on_attach = function(_, bufnr)
+    vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>')
+    vim.keymap.set('n', 'gy', '<cmd>lua vim.lsp.buf.type_definition()<CR>')
+    vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>')
+    vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>')
+    vim.keymap.set('n', 'gn', '<cmd>lua vim.lsp.buf.rename()<CR>')
+    vim.keymap.set('n', 'df', '<cmd>lua vim.lsp.buf.code_action()<CR>')
+    vim.keymap.set('n', 'dn', '<cmd>lua vim.diagnostic.goto_next()<CR>')
+    vim.keymap.set('n', 'dN', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
+    vim.keymap.set('n', 'gh', '<cmd>lua vim.lsp.buf.hover()<CR>')
+  end
+}
