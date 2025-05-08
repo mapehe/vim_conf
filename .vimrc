@@ -25,6 +25,7 @@ Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'folke/trouble.nvim'
 Plug 'nvim-tree/nvim-web-devicons'
+Plug 'nvimtools/none-ls.nvim'
 call plug#end()
 
 set number

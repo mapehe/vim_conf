@@ -46,14 +46,31 @@ require("lspconfig").ts_ls.setup {
     vim.keymap.set('n', 'dn', '<cmd>lua vim.diagnostic.goto_next()<CR>')
     vim.keymap.set('n', 'dN', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
     vim.keymap.set('n', 'gh', '<cmd>lua vim.lsp.buf.hover()<CR>')
-
-    -- Format with Prettier on save
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      buffer = bufnr,
-      callback = function()
-        vim.cmd("silent! !prettier --write " .. vim.fn.shellescape(vim.api.nvim_buf_get_name(0)))
-        vim.cmd("edit!") -- Reload the buffer
-      end,
-    })
   end
 }
+
+lspconfig.eslint.setup({})
+
+local null_ls = require('null-ls')
+
+null_ls.setup({
+  on_attach = function(client, bufnr)
+    local augroup = vim.api.nvim_create_augroup('null_format', {clear = true})
+    vim.api.nvim_create_autocmd('BufWritePre', {
+      group = augroup,
+      buffer = bufnr,
+      desc = 'Fix and format',
+      callback = function()
+        vim.lsp.buf.format({ id = client.id })
+      end
+    })
+  end,
+  sources = {
+    null_ls.builtins.formatting.prettier.with({
+      prefer_local = 'node_modules/.bin',
+    })
+  }
+})
+
+
+
