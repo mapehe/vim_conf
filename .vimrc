@@ -63,6 +63,7 @@ nmap <up> :tabnew<cr>
 nmap <down> :tabclose<cr>
 nmap <right> :tabnext<cr>
 nmap <left> :tabprevious<cr>
+nmap <silent> ¨ :Gedit<cr>
 
 nmap J <Plug>(GitGutterNextHunk)
 nmap K <Plug>(GitGutterPrevHunk)
@@ -76,4 +77,49 @@ highlight CocErrorFloat ctermfg=Red guifg=#ff0000
 highlight CocInfoFloat ctermfg=White guifg=#ffffff
 
 colorscheme catppuccin-macchiato
+
+function! GoToPreciseDiffLocation()
+  " Step 1: Find file name from diff header
+  let lnum_fname = search('^+++ b/', 'bnW')
+  if lnum_fname == 0
+    echo "No file header found"
+    return
+  endif
+  let filename_line = getline(lnum_fname)
+  let filename = substitute(filename_line, '^+++ b/', '', '')
+
+  " Step 2: Find the nearest hunk header above the cursor
+  let lnum_hunk = search('^@@', 'bnW')
+  if lnum_hunk == 0
+    echo "No hunk header found"
+    return
+  endif
+  let hunk_line = getline(lnum_hunk)
+
+  " Step 3: Parse the new-file start line from hunk header
+  let m = matchlist(hunk_line, '^@@ -\d\+\%(,\d\+\)\? +\(\d\+\)')
+  if len(m) < 2
+    echo "Could not parse hunk header"
+    return
+  endif
+  let new_start = str2nr(m[1])
+
+  " Step 4: Calculate cursor's offset from hunk header, skipping '-' lines
+  let cur_line = line('.')
+  let offset = 0
+  for i in range(lnum_hunk + 1, cur_line)
+    let line_text = getline(i)
+    if line_text =~ '^+' || line_text =~ '^ '
+      let offset += 1
+    endif
+  endfor
+
+  let target_line = new_start + offset
+
+  " Step 5: Open the file and jump to the corresponding line
+  execute 'edit ' . filename
+  execute target_line
+endfunction
+
+command! GotoDiffChange call GoToPreciseDiffLocation()
 
