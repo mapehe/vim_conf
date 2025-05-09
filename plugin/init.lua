@@ -38,7 +38,9 @@ require("lspconfig").ts_ls.setup {
     vim.keymap.set('n', 'dn', '<cmd>lua vim.diagnostic.goto_next()<CR>')
     vim.keymap.set('n', 'dN', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
     vim.keymap.set('n', 'gh', '<cmd>lua vim.lsp.buf.hover()<CR>')
-  end
+  end,
+  allow_incremental_sync = false,
+  debounce_text_changes = 1000,
 }
 
 lspconfig.eslint.setup({
