@@ -114,7 +114,13 @@ lspconfig.ts_ls.setup {
   capabilities = capabilities
 }
 
-lspconfig.eslint.setup {}
+lspconfig.eslint.setup({
+  flags = {
+    allow_incremental_sync = false,
+    debounce_text_changes = 1000,
+  },
+})
+
 
 null_ls.setup({
       on_attach = function(client, bufnr)
