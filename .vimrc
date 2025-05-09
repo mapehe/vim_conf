@@ -1,4 +1,3 @@
-
 filetype plugin indent on
 
 call plug#begin()
@@ -7,10 +6,6 @@ Plug 'vim-airline/vim-airline'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
 Plug 'Julian/lean.nvim'
 Plug 'williamboman/mason.nvim'
 Plug 'williamboman/mason-lspconfig.nvim'
@@ -26,13 +21,18 @@ Plug 'hrsh7th/nvim-cmp'
 Plug 'folke/trouble.nvim'
 Plug 'nvim-tree/nvim-web-devicons'
 Plug 'nvimtools/none-ls.nvim'
+
+" Logger dependency
+Plug 'rmagatti/logger.nvim'
+
+" Main plugin
+Plug 'rmagatti/goto-preview'
+
 call plug#end()
 
 set number
 
 let mapleader = " "
-
-let g:coc_global_extensions = ['coc-tsserver']
 
 let $FZF_DEFAULT_COMMAND='find . \( -name node_modules -o -name .git -o -name .next -o -name .husky -o -name .swc \) -prune -o -print'
 
@@ -230,4 +230,11 @@ nnoremap <leader>cs :lua require("trouble").toggle("symbols")<CR>
 nnoremap <leader>cl :lua require("trouble").toggle({mode = "lsp", focus = false, win = {position = "right"}})<CR>
 nnoremap <leader>xL :lua require("trouble").toggle("loclist")<CR>
 nnoremap <leader>xQ :lua require("trouble").toggle("qflist")<CR>
+
+lua << EOF
+require('goto-preview').setup {
+  default_mappings = true,
+}
+require('goto-preview.lib').logger = require('logger')
+EOF
 

@@ -25,14 +25,6 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   }
 )
 
--- Mason setup
-require("mason").setup()
-
--- Install tsserver automatically
-require("mason-lspconfig").setup {
-  ensure_installed = { "ts_ls" },
-}
-
 local lspconfig = require("lspconfig")
 
 require("lspconfig").ts_ls.setup {
@@ -54,23 +46,33 @@ lspconfig.eslint.setup({})
 local null_ls = require('null-ls')
 
 null_ls.setup({
-  on_attach = function(client, bufnr)
-    local augroup = vim.api.nvim_create_augroup('null_format', {clear = true})
-    vim.api.nvim_create_autocmd('BufWritePre', {
-      group = augroup,
-      buffer = bufnr,
-      desc = 'Fix and format',
-      callback = function()
-        vim.lsp.buf.format({ id = client.id })
-      end
-    })
-  end,
-  sources = {
-    null_ls.builtins.formatting.prettier.with({
-      prefer_local = 'node_modules/.bin',
-    })
-  }
-})
+      on_attach = function(client, bufnr)
+        if client.supports_method("textDocument/formatting") then
+            vim.api.nvim_create_autocmd("BufWritePre", {
+                group = augroup,
+                buffer = bufnr,
+                callback = function()
+                    vim.lsp.buf.format({
+                        bufnr = bufnr,
+                        timeout_ms = 1000,
+                        filter = function(c)
+                            return c.name == "null-ls"
+                        end
+                    })
+                end,
+            })
 
+        end
+    end,
+    sources = {
+      null_ls.builtins.formatting.prettier.with({
+          command = "./node_modules/.bin/prettier", -- prioritize local prettier
+          filetypes = {
+              "javascript", "typescript", "css", "scss", "html",
+              "json", "yaml", "markdown"
+          },
+      }),
+    },
+})
 
 
