@@ -68,9 +68,11 @@ null_ls.setup({
       null_ls.builtins.formatting.prettier.with({
           command = "./node_modules/.bin/prettier", -- prioritize local prettier
           filetypes = {
-              "javascript", "typescript", "css", "scss", "html",
-              "json", "yaml", "markdown"
-          },
+                "javascript", "typescript", "javascriptreact", "typescriptreact", -- React
+                "css", "scss", "html",
+                "json", "yaml", "markdown"
+            },
+
       }),
     },
 })
