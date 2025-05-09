@@ -41,7 +41,10 @@ require("lspconfig").ts_ls.setup {
   end
 }
 
-lspconfig.eslint.setup({})
+lspconfig.eslint.setup({
+  allow_incremental_sync = false,
+  debounce_text_changes = 1000,
+})
 
 local null_ls = require('null-ls')
 
