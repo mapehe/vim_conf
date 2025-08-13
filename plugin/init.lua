@@ -111,15 +111,33 @@ lspconfig.ts_ls.setup {
     vim.keymap.set('n', 'dN', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
     vim.keymap.set('n', 'gh', '<cmd>lua vim.lsp.buf.hover()<CR>')
   end,
-  capabilities = capabilities
+  capabilities = capabilities,
+  cmd = { "typescript-language-server", "--stdio" },
 }
 
 lspconfig.eslint.setup({
   flags = {
     allow_incremental_sync = false,
-    debounce_text_changes = 1000,
+    debounce_text_changes = 1000, -- only lint after 1s of no typing
+  },
+  settings = {
+    codeActionOnSave = {
+      enable = true,
+      mode = "all",
+    },
+    format = false, -- let Prettier handle formatting
+    run = "onSave", -- lint only on save
+    experimental = {
+      useFlatConfig = false, -- faster than flat config
+    },
+    onIgnoredFiles = "off",
+    workingDirectory = {
+      mode = "auto", -- faster root detection in monorepos
+    },
+    rulesCustomizations = {}, -- optional: downgrade slow rules if needed
   },
 })
+
 
 
 null_ls.setup({
