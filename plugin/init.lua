@@ -115,28 +115,28 @@ lspconfig.ts_ls.setup {
   cmd = { "typescript-language-server", "--stdio" },
 }
 
+-- ESLint - Run only on save
 lspconfig.eslint.setup({
-  flags = {
-    allow_incremental_sync = false,
-    debounce_text_changes = 1000, -- only lint after 1s of no typing
-  },
+  on_attach = function(client, bufnr)
+    -- Only run eslint fix on save
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      buffer = bufnr,
+      command = "EslintFixAll",
+    })
+  end,
   settings = {
-    codeActionOnSave = {
-      enable = true,
-      mode = "all",
-    },
-    format = false, -- let Prettier handle formatting
-    run = "onSave", -- lint only on save
-    experimental = {
-      useFlatConfig = false, -- faster than flat config
-    },
-    onIgnoredFiles = "off",
-    workingDirectory = {
-      mode = "auto", -- faster root detection in monorepos
-    },
-    rulesCustomizations = {}, -- optional: downgrade slow rules if needed
+    format = false, -- use prettier/null-ls
+    run = "onSave",
+    codeActionOnSave = { enable = false }, -- disable "all" fixes
+    experimental = { useFlatConfig = false },
+    workingDirectory = { mode = "auto" },
+  },
+  flags = {
+    debounce_text_changes = 150, -- much shorter debounce
   },
 })
+
+
 
 
 
