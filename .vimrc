@@ -23,6 +23,7 @@ Plug 'hrsh7th/cmp-vsnip'
 Plug 'folke/trouble.nvim'
 Plug 'nvim-tree/nvim-web-devicons'
 Plug 'nvimtools/none-ls.nvim'
+Plug 'airblade/vim-gitgutter'
 
 " Logger dependency
 Plug 'rmagatti/logger.nvim'
