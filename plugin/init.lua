@@ -132,6 +132,8 @@ vim.diagnostic.config({
   update_in_insert = false,
 })
 
+local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+
 null_ls.setup({
       on_attach = function(client, bufnr)
         if client.supports_method("textDocument/formatting") then
