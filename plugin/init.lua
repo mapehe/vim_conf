@@ -83,9 +83,14 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   }
 )
 
+local lspconfig = require("lspconfig")
+local null_ls = require('null-ls')
+
 lspconfig.pyright.setup({
     on_attach = on_attach,
     capabilities = capabilities,
+    -- This forces the server to use the correct communication protocol
+    cmd = { "pyright-langserver", "--stdio" },
     settings = {
         python = {
             analysis = {
@@ -96,9 +101,6 @@ lspconfig.pyright.setup({
         },
     },
 })
-
-local lspconfig = require("lspconfig")
-local null_ls = require('null-ls')
 
 lspconfig.ts_ls.setup {
   on_attach = function(_, bufnr)
