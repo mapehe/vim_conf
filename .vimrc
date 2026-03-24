@@ -24,6 +24,10 @@ Plug 'folke/trouble.nvim'
 Plug 'nvim-tree/nvim-web-devicons'
 Plug 'nvimtools/none-ls.nvim'
 Plug 'airblade/vim-gitgutter'
+Plug 'hat0uma/csvview.nvim'
+
+Plug 'folke/snacks.nvim'
+Plug 'coder/claudecode.nvim'
 
 " Logger dependency
 Plug 'rmagatti/logger.nvim'
@@ -160,3 +164,4 @@ require('goto-preview').setup {
 require('goto-preview.lib').logger = require('logger')
 EOF
 
+let NERDTreeShowHidden=1

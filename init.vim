@@ -1,0 +1,1 @@
+/Users/mapehe/.vimrc
